@@ -16,7 +16,7 @@ public class HWJ1_test {
 	
 	@Before
 	public void initC() {
-		btreeC = new BTree(5, "complete");
+		btreeC = new BTree(4, "complete");
 	}
 	
 	@Before
@@ -29,11 +29,16 @@ public class HWJ1_test {
 		btreeHU = new BTree(5, "heavy unbalanced");
 	}
 	
-	@Test
-	public void testC() {
-		assertEquals(1, btreeC.getRoot().getSx().getDx().getSx().getDx().getValue());
-
-	}
+//	@Before
+//	public void initOnerousSum() {
+//		BTA bta = new BTA();
+//	}
+	
+//	@Test
+//	public void testC() {
+//		assertEquals(1, btreeC.getRoot().getSx().getDx().getValue());
+//
+//	}
 
 	@Test
 	public void testHU() {
@@ -43,6 +48,14 @@ public class HWJ1_test {
 		else
 			i = btreeHU.getRoot().getSx().getSx().getSx().getSx().getValue();
 		assertEquals(1, i);
+
+	}
+	
+	@Test
+	public void testOnerousSum() {
+		BTA bta = new BTA();
+		//System.out.println(btreeC.getRoot().getValue());
+		assertEquals(1, bta.computeOnerousSum(btreeC.getRoot()));
 
 	}
 	
