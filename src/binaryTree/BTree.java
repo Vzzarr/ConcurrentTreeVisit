@@ -9,14 +9,14 @@ public class BTree {
 	 * @param depth = specifies the depth of the Binary Tree
 	 * @param type = 
 	 * "complete" --> (complete Binary Tree) || 
-	 * "unbalanced" --> (random unbalanded Binary Tree) || 
+	 * "random" --> (random unbalanded Binary Tree) || 
 	 * "heavy unbalanced" --> (Binary Tree with only left children or only right children)
 	 */
 	public BTree(int depth, String type){
 		if(type == "complete")
 			root = generateCompleteBTree(depth);
-		if(type == "unbalanced")
-			root = generateUnbalancedBTree(depth);
+		if(type == "random")
+			root = generateRandomBTree(depth);
 		if(type == "heavy unbalanced")
 			root = generateHeavyUnbalancedBTree(depth, Math.random());
 	}
@@ -44,7 +44,7 @@ public class BTree {
 	    return currentNode;
 	}
 	
-	private Node generateUnbalancedBTree(int depth) {
+	private Node generateRandomBTree(int depth) {
 		if(depth <= 0) return null;
 		double r = Math.random();
 		Node currentNode = new Node() {
@@ -58,14 +58,14 @@ public class BTree {
 			@Override
 			public Node getSx() {
 				if(r < 0.7)
-					return generateUnbalancedBTree(depth - 1);
+					return generateRandomBTree(depth - 1);
 				return null;
 			}
 			
 			@Override
 			public Node getDx() {
 				if(r < 0.4 || r >= 0.7)
-					return generateUnbalancedBTree(depth - 1);
+					return generateRandomBTree(depth - 1);
 				return null;
 			}
 		};

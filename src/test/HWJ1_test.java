@@ -2,43 +2,53 @@ package test;
 
 import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import binaryTree.*;
+import hwj1.BTA;
+import hwj1.SpeedUp;
 
 public class HWJ1_test {
 
 	BTree btreeC;
-	BTree btreeU;
+	BTree btreeR;
 	BTree btreeHU;
 	
-	@Before
-	public void initC() {
-		btreeC = new BTree(4, "complete");
-	}
-	
-	@Before
-	public void initU() {
-		btreeU = new BTree(5, "unbalanced");
-	}
+	BTA bta;
 
 	@Before
-	public void initHU() {
+	public void initC() {
+		btreeC = new BTree(5, "complete");
+		btreeR = new BTree(2, "random");
 		btreeHU = new BTree(5, "heavy unbalanced");
 	}
-	
-//	@Before
-//	public void initOnerousSum() {
-//		BTA bta = new BTA();
-//	}
-	
-//	@Test
-//	public void testC() {
-//		assertEquals(1, btreeC.getRoot().getSx().getDx().getValue());
-//
-//	}
+
+	//	@Before
+	//	public void initU() {
+	//	}
+	//
+	//	@Before
+	//	public void initHU() {
+	//	}
+
+		@Before
+		public void initOnerousSum() {
+			bta = new BTA();
+		}
+
+	@Test
+	public void testC() {
+		assertEquals(1, btreeC.getRoot().getSx().getDx().getSx().getDx().getValue());
+	}
+
+	@Test
+	public void testR() {
+		if(btreeR.getRoot().getSx() != null)
+			assertEquals(1, btreeR.getRoot().getSx().getValue());
+		else
+			assertEquals(1, btreeR.getRoot().getDx().getValue());
+	}
 
 	@Test
 	public void testHU() {
@@ -50,19 +60,18 @@ public class HWJ1_test {
 		assertEquals(1, i);
 
 	}
-	
+
 	@Test
 	public void testOnerousSum() {
 		BTA bta = new BTA();
-		//System.out.println(btreeC.getRoot().getValue());
-		assertEquals(1, bta.computeOnerousSum(btreeC.getRoot()));
+		assertEquals(57, bta.computeOnerousSum(btreeC.getRoot()));
 
 	}
-	
-//	@After
-//	public void clean() {
-//		System.out.println("Cleaning after test divide");
-//	}
+
+	@Test
+	public void testSpeedUp() {
+				assertTrue(1 < new SpeedUp().execute(18, "complete"));
+	}
 
 
 }
