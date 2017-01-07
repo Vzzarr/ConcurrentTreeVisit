@@ -1,4 +1,4 @@
-package binaryTree;
+package binaryTreeUtils;
 
 public interface Node {
 	Node getSx();	//null se non esiste figlio sinistro

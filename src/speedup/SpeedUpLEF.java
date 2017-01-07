@@ -1,15 +1,17 @@
-package hwj1;
+package speedup;
 
-import binaryTree.BTree;
-import binaryTree.Node;
+import binaryTreeUtils.BTree;
+import binaryTreeUtils.Node;
+import hwj1_LEF.BTA_BI;
 
-public class SpeedUp {
+public class SpeedUpLEF extends SpeedUpAbstract {
 
+	@Override
 	public double execute(int depth, String treeType){
 		double startTimeParallel, stopTimeParallel, startTimeSerial, stopTimeSerial;
 		BTree bt = new BTree(depth, treeType);
 		Node root = bt.getRoot();
-		BTA bta = new BTA();
+		BTA_BI bta = new BTA_BI();
 
 		startTimeParallel = System.nanoTime();
 		bta.computeOnerousSum(root);
@@ -27,14 +29,6 @@ public class SpeedUp {
 		
 		return (stopTimeSerial - startTimeSerial) / (stopTimeParallel - startTimeParallel);
 	}
-	
-	public static void main(String[] args) {
-//		execute(15, "complete");
-//		System.out.println("\n");
-//		execute(30, "random");
-//		System.out.println("\n");
-//		execute(30, "heavy unbalanced");
-		
-	}
+
 
 }

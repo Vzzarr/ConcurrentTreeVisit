@@ -1,4 +1,4 @@
-package binaryTree;
+package binaryTreeUtils;
 
 public class FakeProcessor implements OnerousProcessor {
 	public final static int MIN_COUNT = 1000;

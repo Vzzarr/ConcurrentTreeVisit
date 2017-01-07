@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import binaryTree.*;
-import hwj1.BTA;
-import hwj1.SpeedUp;
+import binaryTreeUtils.*;
+import hwj1_LEF.BTA_BI;
+import speedup.SpeedUpLEF;
 
 public class HWJ1_test {
 
 	BTree btreeC;
 	BTree btreeR;
 	BTree btreeHU;
-	
-	BTA bta;
+
+	BTA_BI bta;
 
 	@Before
 	public void initC() {
@@ -32,10 +32,10 @@ public class HWJ1_test {
 	//	public void initHU() {
 	//	}
 
-		@Before
-		public void initOnerousSum() {
-			bta = new BTA();
-		}
+	@Before
+	public void initOnerousSum() {
+		bta = new BTA_BI();
+	}
 
 	@Test
 	public void testC() {
@@ -63,14 +63,14 @@ public class HWJ1_test {
 
 	@Test
 	public void testOnerousSum() {
-		BTA bta = new BTA();
+		BTA_BI bta = new BTA_BI();
 		assertEquals(57, bta.computeOnerousSum(btreeC.getRoot()));
 
 	}
 
 	@Test
 	public void testSpeedUp() {
-				assertTrue(1 < new SpeedUp().execute(18, "complete"));
+		assertTrue(1 < new SpeedUpLEF().execute(11, "complete"));
 	}
 
 

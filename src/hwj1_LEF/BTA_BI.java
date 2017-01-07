@@ -1,4 +1,4 @@
-package hwj1;
+package hwj1_LEF;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CompletionService;
@@ -11,14 +11,19 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import binaryTree.BinaryTreeAdder;
-import binaryTree.Node;
+import binaryTreeUtils.BinaryTreeAdder;
+import binaryTreeUtils.Node;
 
-public class BTA implements BinaryTreeAdder{
+/**
+ * this solution considers to have a buffer of unlimited size
+ * @author nicholas
+ *
+ */
+public class BTA_BI implements BinaryTreeAdder{
 
 	private int availableProcessors;
 
-	public BTA(){
+	public BTA_BI(){
 		availableProcessors = Runtime.getRuntime().availableProcessors();
 	}
 
@@ -35,7 +40,7 @@ public class BTA implements BinaryTreeAdder{
 		CyclicBarrier barrier = new CyclicBarrier(availableProcessors);
 
 		for(int i = 0; i < availableProcessors; i++)
-			taskCompletionService.submit(new BTATask(buffer, barrier));
+			taskCompletionService.submit(new BTATaskBI(buffer, barrier));
 		for(int taskHandled = 0; taskHandled < availableProcessors; taskHandled++){
 			try {
 				sum += taskCompletionService.take().get();
@@ -63,7 +68,7 @@ public class BTA implements BinaryTreeAdder{
 		CyclicBarrier barrier = new CyclicBarrier(1);
 
 		for(int i = 0; i < 1; i++)
-			taskCompletionService.submit(new BTATask(buffer, barrier));
+			taskCompletionService.submit(new BTATaskBI(buffer, barrier));
 		for(int taskHandled = 0; taskHandled < 1; taskHandled++){
 			try {
 				sum += taskCompletionService.take().get();

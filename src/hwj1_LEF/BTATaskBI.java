@@ -1,17 +1,22 @@
-package hwj1;
+package hwj1_LEF;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CyclicBarrier;
 
-import binaryTree.Node;
+import binaryTreeUtils.Node;
 
-public class BTATask implements Callable<Integer>{
+/**
+ * this solution considers to have a buffer of unlimited size
+ * @author nicholas
+ *
+ */
+public class BTATaskBI implements Callable<Integer>{
 
 	BlockingQueue<Node> buffer;
 	CyclicBarrier barrier;
 	
-	public BTATask(BlockingQueue<Node> buf, CyclicBarrier bar) {
+	public BTATaskBI(BlockingQueue<Node> buf, CyclicBarrier bar) {
 		buffer = buf;
 		barrier = bar;
 	}
@@ -30,7 +35,8 @@ public class BTATask implements Callable<Integer>{
 				buffer.put(head_dx);
 			val = val + head.getValue();
 		}
-		barrier.await();
+		if(barrier != null)
+			barrier.await();
 //		System.out.println(val);
 		return val;
 	}
