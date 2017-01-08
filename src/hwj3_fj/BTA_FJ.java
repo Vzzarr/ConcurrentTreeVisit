@@ -12,11 +12,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import binaryTreeUtils.BinaryTreeAdder;
 import binaryTreeUtils.Node;
-import hwj1_LEF.BTATaskBI;
+import hwj1_LEF.BTATaskLEF;
 
-public class BTARecursive implements BinaryTreeAdder {
+public class BTA_FJ implements BinaryTreeAdder {
 
-	public BTARecursive() {
+	public BTA_FJ() {
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class BTARecursive implements BinaryTreeAdder {
 		buffer.offer(root);
 		
 		ForkJoinPool fjpool = new ForkJoinPool();
-		return fjpool.invoke(new BTATaskRecursive(buffer));
+		return fjpool.invoke(new BTATaskFJ(buffer));
 	}
 	
 	/**
@@ -38,6 +38,6 @@ public class BTARecursive implements BinaryTreeAdder {
 		buffer.offer(root);
 		
 		ForkJoinPool fjpool = new ForkJoinPool(1);
-		return fjpool.invoke(new BTATaskRecursive(buffer));
+		return fjpool.invoke(new BTATaskFJ(buffer));
 	}
 }

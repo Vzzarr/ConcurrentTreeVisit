@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import binaryTreeUtils.BTree;
-import hwj1_LEF.BTA_BI;
-import hwj3_fj.BTARecursive;
-import speedup.SpeedUpLEF;
+import hwj1_LEF.BTA_LEF;
+import hwj3_fj.BTA_FJ;
+import speedup.SpeedUp1LEF;
 
 public class HWJ3_test {
 
@@ -16,24 +16,22 @@ public class HWJ3_test {
 	BTree btreeR;
 	BTree btreeHU;
 
-	BTA_BI bta;
+	BTA_LEF bta;
 
 	@Before
 	public void initC() {
 		btreeC = new BTree(5, "complete");
-		//		btreeR = new BTree(2, "random");
-		//		btreeHU = new BTree(5, "heavy unbalanced");
 	}
 	@Test
 	public void testOnerousSumRecursive() {
-		BTARecursive btar = new BTARecursive();
+		BTA_FJ btar = new BTA_FJ();
 		assertEquals(57, btar.computeOnerousSum(btreeC.getRoot()));
 
 	}
 
 	@Test
-	public void testSpeedUp() {
-		assertTrue(1 < new SpeedUpLEF().execute(15, "complete"));
+	public void testSpeedUp() throws InterruptedException {
+		assertTrue(1 < new SpeedUp1LEF().execute(15, "complete"));
 	}
 
 }

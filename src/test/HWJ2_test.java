@@ -6,13 +6,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import binaryTreeUtils.BTree;
-import hwj2_.BTA_BL;
+import hwj2_WS.BTA_WS;
+import speedup.SpeedUp2WS;
 
 public class HWJ2_test {
 
 	BTree btreeC;
 
-	BTA_BL btal;
+	BTA_WS btal;
 
 	@Before
 	public void initC() {
@@ -22,7 +23,7 @@ public class HWJ2_test {
 
 	@Before
 	public void initOnerousSum() {
-		btal = new BTA_BL(500);
+		btal = new BTA_WS(500);
 	}
 
 
@@ -32,10 +33,10 @@ public class HWJ2_test {
 
 	}
 
-//	@Test
-//	public void testSpeedUp() {
-//		assertTrue(1 < new SpeedUpLEF().execute(11, "complete"));
-//	}
+	@Test
+	public void testSpeedUp() throws InterruptedException {
+		assertTrue(1 < new SpeedUp2WS().execute(12, "complete"));
+	}
 
 
 }

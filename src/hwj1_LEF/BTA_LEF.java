@@ -19,11 +19,11 @@ import binaryTreeUtils.Node;
  * @author nicholas
  *
  */
-public class BTA_BI implements BinaryTreeAdder{
+public class BTA_LEF implements BinaryTreeAdder{
 
 	private int availableProcessors;
 
-	public BTA_BI(){
+	public BTA_LEF(){
 		availableProcessors = Runtime.getRuntime().availableProcessors();
 	}
 
@@ -40,7 +40,7 @@ public class BTA_BI implements BinaryTreeAdder{
 		CyclicBarrier barrier = new CyclicBarrier(availableProcessors);
 
 		for(int i = 0; i < availableProcessors; i++)
-			taskCompletionService.submit(new BTATaskBI(buffer, barrier));
+			taskCompletionService.submit(new BTATaskLEF(buffer, barrier));
 		for(int taskHandled = 0; taskHandled < availableProcessors; taskHandled++){
 			try {
 				sum += taskCompletionService.take().get();
@@ -68,7 +68,7 @@ public class BTA_BI implements BinaryTreeAdder{
 		CyclicBarrier barrier = new CyclicBarrier(1);
 
 		for(int i = 0; i < 1; i++)
-			taskCompletionService.submit(new BTATaskBI(buffer, barrier));
+			taskCompletionService.submit(new BTATaskLEF(buffer, barrier));
 		for(int taskHandled = 0; taskHandled < 1; taskHandled++){
 			try {
 				sum += taskCompletionService.take().get();

@@ -6,8 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import binaryTreeUtils.*;
-import hwj1_LEF.BTA_BI;
-import speedup.SpeedUpLEF;
+import hwj1_LEF.BTA_LEF;
+import speedup.SpeedUp1LEF;
 
 public class HWJ1_test {
 
@@ -15,7 +15,7 @@ public class HWJ1_test {
 	BTree btreeR;
 	BTree btreeHU;
 
-	BTA_BI bta;
+	BTA_LEF bta;
 
 	@Before
 	public void initC() {
@@ -27,7 +27,7 @@ public class HWJ1_test {
 
 	@Before
 	public void initOnerousSum() {
-		bta = new BTA_BI();
+		bta = new BTA_LEF();
 	}
 
 	@Test
@@ -56,14 +56,25 @@ public class HWJ1_test {
 
 	@Test
 	public void testOnerousSum() {
-		BTA_BI bta = new BTA_BI();
+		BTA_LEF bta = new BTA_LEF();
 		assertEquals(57, bta.computeOnerousSum(btreeC.getRoot()));
-
+	}
+	
+	@Test
+	public void testOnerousSumMonoThread() {
+		BTA_LEF bta = new BTA_LEF();
+		assertEquals(57, bta.computeOnerousSumMonoThread(btreeC.getRoot()));
 	}
 
 	@Test
-	public void testSpeedUp() {
-		assertTrue(1 < new SpeedUpLEF().execute(11, "complete"));
+	public void testHeavyUnbalancedTree() {
+		BTA_LEF bta = new BTA_LEF();
+		assertEquals(20, bta.computeOnerousSumMonoThread(btreeHU.getRoot()));
+	}
+	
+	@Test
+	public void testSpeedUp() throws InterruptedException {
+		assertTrue(1 < new SpeedUp1LEF().execute(15, "complete"));
 	}
 
 

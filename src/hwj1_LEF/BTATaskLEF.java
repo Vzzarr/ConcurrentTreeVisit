@@ -11,12 +11,12 @@ import binaryTreeUtils.Node;
  * @author nicholas
  *
  */
-public class BTATaskBI implements Callable<Integer>{
+public class BTATaskLEF implements Callable<Integer>{
 
 	BlockingQueue<Node> buffer;
 	CyclicBarrier barrier;
 	
-	public BTATaskBI(BlockingQueue<Node> buf, CyclicBarrier bar) {
+	public BTATaskLEF(BlockingQueue<Node> buf, CyclicBarrier bar) {
 		buffer = buf;
 		barrier = bar;
 	}

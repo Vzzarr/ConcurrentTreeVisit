@@ -2,16 +2,19 @@ package speedup;
 
 import binaryTreeUtils.BTree;
 import binaryTreeUtils.Node;
-import hwj3_fj.BTARecursive;
+import hwj3_fj.BTA_FJ;
 
-public class SpeedupFJ extends SpeedUpAbstract {
+public class SpeedUp3FJ implements SpeedUp {
 
 	@Override
-	public double execute(int depth, String treeType){
+	public double execute(int depth, String treeType) throws InterruptedException{
+		System.out.println("WARM UP");
+		Thread.sleep(1000);
+
 		double startTimeParallel, stopTimeParallel, startTimeSerial, stopTimeSerial;
 		BTree bt = new BTree(depth, treeType);
 		Node root = bt.getRoot();
-		BTARecursive btar = new BTARecursive();
+		BTA_FJ btar = new BTA_FJ();
 
 		startTimeParallel = System.nanoTime();
 		btar.computeOnerousSum(root);
