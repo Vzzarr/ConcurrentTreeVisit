@@ -24,13 +24,6 @@ public class HWJ1_test {
 		btreeHU = new BTree(5, "heavy unbalanced");
 	}
 
-	//	@Before
-	//	public void initU() {
-	//	}
-	//
-	//	@Before
-	//	public void initHU() {
-	//	}
 
 	@Before
 	public void initOnerousSum() {
