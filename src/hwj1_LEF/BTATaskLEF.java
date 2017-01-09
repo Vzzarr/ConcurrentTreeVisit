@@ -25,19 +25,19 @@ public class BTATaskLEF implements Callable<Integer>{
 	public Integer call() throws Exception {
 		int val = 0;
 		while(!buffer.isEmpty()){
-			Node head = buffer.take();
-//			Thread.sleep(1000);
-			Node head_sx = head.getSx();
-			Node head_dx = head.getDx();
-			if(head_sx != null)
-				buffer.put(head_sx);
-			if(head_dx != null)
-				buffer.put(head_dx);
-			val = val + head.getValue();
+			Node head = buffer.poll();
+			if(head != null){
+				Node head_sx = head.getSx();
+				Node head_dx = head.getDx();
+				if(head_sx != null)
+					buffer.put(head_sx);
+				if(head_dx != null)
+					buffer.put(head_dx);
+				val = val + head.getValue();
+			}
 		}
 		if(barrier != null)
 			barrier.await();
-//		System.out.println(val);
 		return val;
 	}
 

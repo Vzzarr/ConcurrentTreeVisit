@@ -1,0 +1,37 @@
+Nicholas Tucci 461669: HWJ
+
+Il progettoJava si dispone così:
+
+package binaryTreeUtils:
+	contiene metodi utili a generare automaticamente alberi binari della profondità richiesta; possono essere completi, random o completamente sbilanciati.
+
+package speedup:
+	contiene delle classi necessarie per poter misurare lo Speed Up di ciascuna soluzione implementata, più una classe con main che permette di eseguire le altre.
+
+HWJ1
+Soluzione basata su una BlockingQueue ed il framework LEF
+Esecuzione con Albero completo profondità 15:
+"WARM UP
+Parallel Execution Time: 0.473124508
+Serial Execution Time:   1.261806152
+Speed Up: 2.666964257112633"
+
+HWJ2
+Soluzione basata su una collezione di Deque, ciascuna per ogni Thread di esecuzione; all'inizio ciascun Thread prova a rubare il nodo root messo in unico buffer in comune a tutti i thread: il primo che riesce a prenderlo potrà continuare a visitare l'albero come nella precedente soluzione; gli altri dovranno fare Work Stealing per poter cominciare.
+Problemi Noti: per alcune sequenze di esecuzione il programma "gira a vuoto" senza andare avanti nell'esecuzione
+Esecuzione con Albero completo profondità 15:
+"SpeedUp HWJ2
+WARM UP
+Parallel Execution Time: 0.447845071
+Serial Execution Time:   1.215455196
+Speed Up: 2.714008202180258"
+
+HWJ3
+Soluzione basata sul framework Fork/Join
+Problemi Noti: Speed Up basso, a volte non ragginunge il valore 1
+Esecuzione con Albero completo profondità 15:
+"SpeedUp HWJ3
+WARM UP
+Parallel Execution Time: 1.272403897
+Serial Execution Time:   1.226014068
+Speed Up: 0.9635415852549845"

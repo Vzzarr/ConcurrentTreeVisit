@@ -1,6 +1,7 @@
 package hwj2_WS;
 
 import java.util.ArrayDeque;
+import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.Callable;
 import java.util.concurrent.CyclicBarrier;
@@ -39,17 +40,20 @@ public class BTATaskWS implements Callable<Integer> {
 		boolean existsDequeNotEmpty = true;
 		while(existsDequeNotEmpty){
 			if(!deq.isEmpty()){
-				head = deq.pop();
-				head_sx = head.getSx();
-				head_dx = head.getDx();
-				val += head.getValue();
-//				System.out.println(head.getValue());
+					head = deq.poll();
+					if(head != null){
+						head_sx = head.getSx();
+						head_dx = head.getDx();
+						val += head.getValue();
+//						System.out.println(head.getValue());
 
-				if(head_sx != null)
-					deq.push(head_sx);
-				if(head_dx != null)
-					deq.push(head_dx);
-				existsDequeNotEmpty = true;
+						if(head_sx != null)
+							deq.push(head_sx);
+						if(head_dx != null)
+							deq.push(head_dx);
+						existsDequeNotEmpty = true;
+					}
+
 			}
 			else	//valuta se tutti i deque siano vuoti, in caso affermativo si esce dal while
 				existsDequeNotEmpty = workStealing();

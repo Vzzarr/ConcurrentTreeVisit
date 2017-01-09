@@ -66,11 +66,7 @@ public class HWJ1_test {
 		assertEquals(57, bta.computeOnerousSumMonoThread(btreeC.getRoot()));
 	}
 
-	@Test
-	public void testHeavyUnbalancedTree() {
-		BTA_LEF bta = new BTA_LEF();
-		assertEquals(20, bta.computeOnerousSumMonoThread(btreeHU.getRoot()));
-	}
+
 	
 	@Test
 	public void testSpeedUp() throws InterruptedException {

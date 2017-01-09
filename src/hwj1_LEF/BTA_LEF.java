@@ -79,41 +79,4 @@ public class BTA_LEF implements BinaryTreeAdder{
 		pool.shutdown();
 		return sum;
 	}
-
-	
-	
-	
-	
-	
-//	public int computeOnerousSumTask(Node root){
-//		buffer.offer(root);
-//		FutureTask<Integer> future = new FutureTask<Integer>(new Callable<Integer>() {
-//			public Integer call() throws Exception {
-//				while(!buffer.isEmpty()){
-//					Node head = buffer.take();
-//					Node head_sx = head.getSx();
-//					Node head_dx = head.getDx();
-//					if(head_sx != null)
-//						buffer.put(head_sx);
-//					if(head_dx != null)
-//						buffer.put(head_dx);
-//					lockRV.lock();
-//					try {
-//						returnValue = returnValue + head.getValue();
-//					} finally {
-//						lockRV.unlock();
-//					}
-//				}
-//				return returnValue;
-//			}
-//		});
-//		pool.execute(future);
-//		while(true){
-//			try {
-//				if(future.isDone())
-//					return returnValue;
-//			} catch (Exception e) {}
-//
-//		}
-//	}
 }

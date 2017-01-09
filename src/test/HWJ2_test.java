@@ -32,11 +32,4 @@ public class HWJ2_test {
 		assertEquals(57, btal.computeOnerousSum(btreeC.getRoot()));
 
 	}
-
-	@Test
-	public void testSpeedUp() throws InterruptedException {
-		assertTrue(1 < new SpeedUp2WS().execute(12, "complete"));
-	}
-
-
 }
