@@ -1,49 +1,65 @@
 package hwj3_fj;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RecursiveTask;
 
 import binaryTreeUtils.Node;
-import hwj1_LEF.BTATaskLEF;
 
 public class BTATaskFJ extends RecursiveTask<Integer> {
 
-    public static final int THRESHOLD = 5;
-
-	private BlockingQueue<Node> buffer;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
-	public BTATaskFJ(BlockingQueue<Node> buf) {
-		buffer = buf;
+	public static final int THRESHOLD = 5;
+	private Node node;
+	
+	public BTATaskFJ(Node node) {
+		this.node = node;
 	}
+
 	@Override
 	protected Integer compute() {
-		while(!buffer.isEmpty()){
-			if(buffer.size() < THRESHOLD){
-				try {
-					return new BTATaskLEF(buffer, null).call().intValue();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-			else {
-				BlockingQueue<Node> l = new LinkedBlockingQueue<Node>();
-				BlockingQueue<Node> r;
-				for(int i = 0; i < (buffer.size() / 2); i++)
-					try {
-						l.put(buffer.take());
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-				r = buffer;
-				BTATaskFJ left = new BTATaskFJ(l);
-				left.fork();
-				BTATaskFJ right = new BTATaskFJ(r);
-				return left.join() + right.compute();
-			}
+		if(nodeNumber(node) < THRESHOLD)
+			return computeSerial(node);
+		else{
+			BTATaskFJ left = new BTATaskFJ(node.getSx());
+			BTATaskFJ right = new BTATaskFJ(node.getDx());
+			left.fork();
+			int rightAns = right.compute().intValue();
+			int leftAns = left.join().intValue();
+			return leftAns + rightAns + node.getValue();
 		}
-		
-		return null;
 	}
-
+	
+	/***
+	 * calculates the sum of all the values of nodes in the tree recursively
+	 * @param node
+	 * @return
+	 */
+	private int computeSerial(Node node){
+		int value;
+		if(node == null)
+			value = 0;
+		else{
+			value = node.getValue();
+			if(node.getSx() != null)
+				value += computeSerial(node.getSx());
+			if(node.getDx() != null)
+				value += computeSerial(node.getDx());
+		}
+		return value;
+	}
+	
+	/**
+	 * calculates the number of nodes in the input tree
+	 * @param node
+	 * @return
+	 */
+	private int nodeNumber(Node node){
+		if(node == null)
+			return 0;
+		else
+			return 1 + nodeNumber(node.getSx()) + nodeNumber(node.getDx());
+	}
 }

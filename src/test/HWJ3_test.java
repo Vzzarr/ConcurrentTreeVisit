@@ -8,7 +8,7 @@ import org.junit.Test;
 import binaryTreeUtils.BTree;
 import hwj1_LEF.BTA_LEF;
 import hwj3_fj.BTA_FJ;
-import speedup.SpeedUp1LEF;
+import speedup.SpeedUp3FJ;
 
 public class HWJ3_test {
 
@@ -31,7 +31,7 @@ public class HWJ3_test {
 
 	@Test
 	public void testSpeedUp() throws InterruptedException {
-		assertTrue(1 < new SpeedUp1LEF().execute(15, "complete"));
+		assertTrue(1 < new SpeedUp3FJ().execute(15, "complete"));
 	}
 
 }
