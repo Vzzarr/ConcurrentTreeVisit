@@ -23,7 +23,7 @@ public class LinkedListSpliterator extends LinkedList<Node> {
 
 	@Override
 	public Spliterator<binaryTreeUtils.Node> spliterator() {
-		return new BTASpliterator(this.list, 0, this.list.size());
+		return new BTASpliterator(this.list, this.node);
 	}
 
 }
